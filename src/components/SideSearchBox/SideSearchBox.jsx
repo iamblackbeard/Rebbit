@@ -1,3 +1,4 @@
+import { useId } from "react";
 import SearchBox from "../SearchBox/SearchBox";
 
 export default function SideSearchBox({
@@ -8,6 +9,8 @@ export default function SideSearchBox({
   handleCheckboxChange,
   subreddit,
 }) {
+  const id = useId();
+
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -19,11 +22,12 @@ export default function SideSearchBox({
 
         {subreddit && (
           <div>
-            <label>
+            <label htmlFor={id}>
               <input
+                id={id}
                 type="checkbox"
                 checked={isChecked}
-                onChange={handleCheckboxChange}
+                onChange={(e) => handleCheckboxChange(e.target.checked)}
               />
               restrict search in r/{subreddit}
             </label>

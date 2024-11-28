@@ -21,11 +21,13 @@ export default function Home() {
         <div className="text-3xl font-bold text-primary">Rebbit</div>
       </div>
 
-      <SearchBox
-        searchValue={searchValue}
-        onSearchValueChange={(value) => setSearchValue(value)}
-        onSearchClick={handleNavigate}
-      />
+      <div className="w-3/4 md:w-3/6">
+        <SearchBox
+          searchValue={searchValue}
+          onSearchValueChange={(value) => setSearchValue(value)}
+          onSearchClick={handleNavigate}
+        />
+      </div>
     </div>
   );
 }

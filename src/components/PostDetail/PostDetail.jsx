@@ -69,7 +69,6 @@ export default function PostDetail() {
     }
   }, [subreddit]);
 
-
   useEffect(() => {
     console.log("Fetching Data Of Post");
     fetchData();
@@ -151,13 +150,11 @@ export default function PostDetail() {
           ) : (
             <div>Comments</div>
           )}
-          
+
           <div className="flex flex-col gap-8">
-            {
-              visibleComments.map((comment) => (
-                <Comment key={comment.data.id} {...comment.data} />
-              ))
-            }
+            {visibleComments.map((comment) => (
+              <Comment key={comment.data.id} {...comment.data} />
+            ))}
             <div className="hover:cursor-pointer">
               {visibleCommentsCount < allComments.length && (
                 <button
@@ -170,10 +167,25 @@ export default function PostDetail() {
               )}
             </div>
           </div>
+          <div className="border-primary py-4 md:col-span-3 md:hidden block">
+            <SideSearchBox
+              searchValue={searchValue}
+              onSearchValueChange={(value) => {
+                setSearchValue(value);
+              }}
+              onSearchClick={handleSearchClick}
+              isChecked={restrictSearch}
+              handleCheckboxChange={(value) => {
+                setRestrictSearch(!restrictSearch);
+                console.log("Handle check box : ", value)
+              }}
+              subreddit={subreddit}
+            />
+          </div>
         </div>
       </div>
       {/* Side Bar - Search and Subreddit info */}
-      <div className="border-primary bg-red-500 md:col-span-3 sm:col-span-2 sm:block hidden">
+      <div className="border-primary px-4 md:col-span-3 sm:col-span-2 md:block hidden">
         <SideSearchBox
           searchValue={searchValue}
           onSearchValueChange={(value) => {

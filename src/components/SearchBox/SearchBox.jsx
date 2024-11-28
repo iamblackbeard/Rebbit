@@ -15,7 +15,7 @@ export default function  ({ searchValue, onSearchValueChange, onSearchClick }) {
 
   return (
     <div
-      className={`flex items-center justify-center p-4 border-2	border-primary rounded-lg w-3/4 md:w-3/6`}
+      className={`flex items-center justify-center p-4 border-2	border-primary rounded-lg w-full`}
     >
       <input
         type="text"
