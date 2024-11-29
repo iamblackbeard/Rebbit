@@ -37,7 +37,7 @@ export default function SubReddit() {
   }
 
   function fetchSubredditInfo() {
-    let url = `https:old.reddit.com/r/${subreddit}/about.json`;
+    let url = `https://old.reddit.com/r/${subreddit}/about.json`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
