@@ -5,7 +5,8 @@ import PostCard from "../PostCard/PostCard";
 import NavButton from "../../uitlity/navButton";
 import SideSearchBox from "../SideSearchBox/SideSearchBox";
 import SubRedditInfo from "../SubRedditInfo/SubRedditInfo";
-
+import {BASE_URL} from "../../config"
+ 
 export default function SubReddit() {
   const location = useLocation();
   const { subreddit } = useParams();
@@ -22,7 +23,7 @@ export default function SubReddit() {
   const [subredditInfo, setSubredditInfo] = useState({});
 
   function fetchSubredditPosts() {
-    let url = `https:old.reddit.com${location.pathname}.json${location.search}`;
+    let url = `${BASE_URL}${location.pathname}.json${location.search}`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
@@ -37,7 +38,7 @@ export default function SubReddit() {
   }
 
   function fetchSubredditInfo() {
-    let url = `https://old.reddit.com/r/${subreddit}/about.json`;
+    let url = `${BASE_URL}/r/${subreddit}/about.json`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
@@ -146,7 +147,6 @@ export default function SubReddit() {
               isChecked={restrictSearch}
               handleCheckboxChange={(value) => {
                 setRestrictSearch(!restrictSearch);
-                console.log("Handle check box : ", value)
               }}
               subreddit={subreddit}
             />

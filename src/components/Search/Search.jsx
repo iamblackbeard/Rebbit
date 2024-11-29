@@ -6,6 +6,7 @@ import PostCard from "../PostCard/PostCard";
 import Button from "../Button/Button";
 import NavButton from "../../uitlity/navButton";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../config";
 
 export default function Search() {
   const location = useLocation();
@@ -21,7 +22,7 @@ export default function Search() {
   const [lastPressedNavBtn, setLastPressedNavBtn] = useState(NavButton.NONE);
 
   let fetchFromUrl = (searchText) => {
-    fetch(`https://old.reddit.com/search.json${searchText}`)
+    fetch(`${BASE_URL}/search.json${searchText}`)
       .then((res) => res.json())
       .then((res) => {
         setAfterPostLink(res.data.after);

@@ -5,11 +5,11 @@ import { FaRegCommentAlt, FaChevronDown } from "react-icons/fa";
 import Comment from "../Comment/Comment";
 import TextComponent from "../TextComponent/TextComponent";
 import { timeAgo } from "../../uitlity/timeAgo";
-import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import subreddit_image from "../../assets/images/subreddit_image.svg";
 import SideSearchBox from "../SideSearchBox/SideSearchBox";
 import SubRedditInfo from "../SubRedditInfo/SubRedditInfo";
+import {BASE_URL} from "../../config"
 
 export default function PostDetail() {
   const { subreddit, postId, postTitle, commentId } = useParams(); // New Change
@@ -34,7 +34,7 @@ export default function PostDetail() {
   };
 
   function fetchSubredditInfo() {
-    let url = `https:old.reddit.com/r/${subreddit}/about.json`;
+    let url = `${BASE_URL}/r/${subreddit}/about.json`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
@@ -46,7 +46,7 @@ export default function PostDetail() {
   }
 
   function fetchData() {
-    let url = `https://old.reddit.com${location.pathname}/.json`;
+    let url = `${BASE_URL}${location.pathname}/.json`;
 
     fetch(url)
       .then((res) => {
