@@ -114,9 +114,9 @@ export default function SubReddit() {
     <>
       {/* Add image here */}
       <div className="w-full h-full grid md:grid-cols-12 sm:grid-cols-6  gap-4 p-4 ">
-        <div className="border-primary md:col-span-9 sm:col-span-4 flex flex-col gap-4">
+        <div className="md:col-span-9 col-span-6 flex items-center flex-col gap-4">
           {/* POST LIST */}
-          <div className="w-11/12 sm:w-9/12 md:w-2/4 flex flex-col gap-2">
+          <div className="w-11/12 sm:w-9/12 flex 	flex-col gap-2">
             {postList.map((obj) => (
               <PostCard key={obj.data.id} {...obj.data} />
             ))}
@@ -136,8 +136,23 @@ export default function SubReddit() {
               {afterPostId && <Button text="next" />}
             </div>
           </div>
+          <div className="border-primary py-4 md:col-span-3 md:hidden block">
+            <SideSearchBox
+              searchValue={searchValue}
+              onSearchValueChange={(value) => {
+                setSearchValue(value);
+              }}
+              onSearchClick={handleSearchClick}
+              isChecked={restrictSearch}
+              handleCheckboxChange={(value) => {
+                setRestrictSearch(!restrictSearch);
+                console.log("Handle check box : ", value)
+              }}
+              subreddit={subreddit}
+            />
+          </div>
         </div>
-        <div className="border-primary bg-red-500 md:col-span-3 sm:col-span-2 sm:block hidden">
+        <div className="border-primary md:col-span-3 col-span-0 md:block hidden">
           <SideSearchBox
             searchValue={searchValue}
             onSearchValueChange={(value) => {

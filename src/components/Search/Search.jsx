@@ -2,7 +2,7 @@ import React from "react";
 import SearchBox from "../SearchBox/SearchBox";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import SearchPost from "../SearchPost";
+import PostCard from "../PostCard/PostCard";
 import Button from "../Button/Button";
 import NavButton from "../../uitlity/navButton";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,6 @@ export default function Search() {
   };
 
   const handleAfterNavigate = () => {
-
     let urlCount = "";
 
     if (lastPressedNavBtn === NavButton.PREV) {
@@ -78,17 +77,19 @@ export default function Search() {
 
   return (
     <div className=" flex flex-col items-center gap-2 py-2">
-      <SearchBox
-        searchValue={searchValue}
-        onSearchValueChange={(value) => setSearchValue(value)}
-        onSearchClick={() => {
-          handleNavigate();
-        }}
-      />
+      <div className="w-11/12 sm:w-9/12">
+        <SearchBox
+          searchValue={searchValue}
+          onSearchValueChange={(value) => setSearchValue(value)}
+          onSearchClick={() => {
+            handleNavigate();
+          }}
+        />
+      </div>
 
-      <div className="w-11/12 sm:w-9/12 md:w-2/4 flex flex-col gap-2">
+      <div className="w-11/12 sm:w-9/12 flex flex-col gap-2">
         {postResult.map((obj) => (
-          <SearchPost {...obj.data} />
+          <PostCard key={obj.data.id} {...obj.data} />
         ))}
       </div>
       <div className="flex justify-center items-center gap-2">
